@@ -1,72 +1,85 @@
 import streamlit as st
 import urllib.parse
-from datetime import datetime
 
-# --- SETTINGS ---
+# --- THE NEBULA THEME ---
 st.set_page_config(page_title="Night Owl", page_icon="🦉", layout="centered")
 
-# --- STYLE ---
 st.markdown("""
     <style>
-    .stApp { background: #0e1117; color: #f0e6ff; }
-    .stButton>button { width: 100%; border-radius: 12px; height: 50px; font-weight: bold; }
-    .log-box { background: #1d2129; padding: 15px; border-radius: 15px; border-left: 5px solid #bb86fc; margin-bottom: 10px; }
-    .owl-header { font-size: 60px; text-align: center; margin-bottom: 0px; }
+    .stApp {
+        background: linear-gradient(rgba(10, 10, 26, 0.9), rgba(10, 10, 26, 0.9)), 
+                    url('https://www.transparenttextures.com/patterns/stardust.png'),
+                    linear-gradient(180deg, #2D1B4E 0%, #1A0B2E 100%);
+        color: #E0D5FF;
+    }
+    .nebula-card {
+        background: rgba(45, 27, 78, 0.5);
+        border: 2px solid #BB86FC;
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .stButton>button {
+        background: linear-gradient(45deg, #6200EE, #BB86FC);
+        color: white;
+        border-radius: 25px;
+        height: 50px;
+        font-weight: bold;
+        border: none;
+    }
+    .signal-btn {
+        background-color: #25D366;
+        color: white;
+        padding: 15px;
+        border-radius: 25px;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        display: block;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR CONTROL ---
-st.sidebar.title("🦉 Night Owl Control")
-phase = st.sidebar.selectbox("Mission Phase", ["Fertility & PCOS", "Starlit Womb"])
+st.markdown("<h1 style='text-align: center; color: white;'>🦉 NIGHT OWL</h1>", unsafe_allow_html=True)
 
-# --- MAIN CONTENT ---
-if phase == "Fertility & PCOS":
-    st.title("🌙 Mission Launch")
-    
-    # 1. THE SCRIPTURE (Restored)
-    st.markdown("""
-    <div class="log-box">
-    <i>"For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future."</i><br>
-    <b>- Jeremiah 29:11</b>
-    </div>
-    """, unsafe_allow_html=True)
+# SCRIPTURE
+st.markdown("""
+<div class="nebula-card">
+    <p style="font-size: 18px; font-style: italic;">"For I know the plans I have for you..."</p>
+    <p><b>Jeremiah 29:11</b></p>
+</div>
+""", unsafe_allow_html=True)
 
-    # 2. THE OWL VISUAL
-    mood = st.select_slider("Mood Engine", ["Exhausted", "Tired", "Steady", "Energetic", "Flirty"])
-    
-    st.markdown('<div class="owl-header">', unsafe_allow_html=True)
-    if mood == "Flirty":
-        st.write("✨🦉✨")
-        st.subheader("Open-Winged Owl")
-    elif mood in ["Exhausted", "Tired"]:
-        st.write("😴🦉💤")
-        st.subheader("Sleepy Owl")
-    else:
-        st.write("👀🦉👀")
-        st.subheader("Steady Owl")
-    st.markdown('</div>', unsafe_allow_html=True)
+# MOOD OWL
+mood = st.select_slider("Energy Level", ["Exhausted", "Tired", "Steady", "Energetic", "Flirty"])
+st.markdown('<div style="text-align:center; font-size:80px; padding:10px;">', unsafe_allow_html=True)
+if mood == "Flirty":
+    st.write("✨🦉✨")
+    st.subheader("Open-Winged Owl")
+elif mood in ["Exhausted", "Tired"]:
+    st.write("😴🦉💤")
+    st.subheader("Sleepy Owl")
+else:
+    st.write("👀🦉👀")
+    st.subheader("Steady Owl")
+st.markdown('</div>', unsafe_allow_html=True)
 
-    # 3. THE LOGBOOK (New Buttons!)
-    st.subheader("📝 Daily Logbook")
-    col1, col2 = st.columns(2)
-    with col1:
-        nmn = st.checkbox("💊 NMN Taken")
-        clearblue = st.selectbox("📊 Clearblue", ["Not Taken", "Low", "High", "Peak"])
-    with col2:
-        water = st.checkbox("💧 Hydrated")
-        meds = st.checkbox("🌿 Supplements")
+# LOGGING
+st.markdown('<div class="nebula-card">', unsafe_allow_html=True)
+st.subheader("📝 Mission Tracking")
+c1, c2 = st.columns(2)
+with c1:
+    st.checkbox("💊 NMN Taken")
+    st.checkbox("📊 Clearblue Peak")
+with c2:
+    st.checkbox("💧 Hydrated")
+    st.checkbox("🌿 Supplements")
+if st.button("SAVE TO THE STARS"):
+    st.balloons()
+st.markdown('</div>', unsafe_allow_html=True)
 
-    if st.button("💾 SAVE TO MISSION LOG"):
-        st.success("Entry captured in the stardust! (Data saved locally)")
-
-    # 4. THE SIGNAL
-    st.subheader("📲 The Signal")
-    msg = urllib.parse.quote("Hey Jaco, Nightingale needs a hand. 🦉")
-    st.markdown(f'<a href="https://wa.me/27845870789?text={msg}" target="_blank"><button style="background-color: #25D366; color: white; border: none;">SIGNAL JACO (WhatsApp)</button></a>', unsafe_allow_html=True)
-
-elif phase == "Starlit Womb":
-    st.title("✨ Starlit Womb")
-    week = st.slider("Current Week", 1, 42, 10)
-    st.markdown('<div class="owl-header">🤰</div>', unsafe_allow_html=True)
-    if week >= 6:
-        st.success(f"Week {week}: The Spark's heartbeat is steady!")
+# THE SIGNAL
+st.subheader("📲 The Signal")
+msg = urllib.parse.quote("Hey Jaco, Nightingale needs a hand. 🦉")
+st.markdown(f'<a href="https://wa.me/27845870789?text={msg}" class="signal-btn">SIGNAL JACO (WhatsApp)</a>', unsafe_allow_html=True)
