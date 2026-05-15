@@ -1,95 +1,62 @@
 import streamlit as st
 import urllib.parse
 
-# --- THE NEBULA THEME ---
-st.set_page_config(page_title="Night Owl", page_icon="🦉", layout="centered")
+# --- 1. THE THEME (Makes it look like your mockup) ---
+st.set_page_config(page_title="Night Owl", page_icon="🦉")
 
 st.markdown("""
     <style>
     .stApp {
-        background: linear-gradient(rgba(10, 10, 26, 0.95), rgba(10, 10, 26, 0.95)), 
-                    url('https://www.transparenttextures.com/patterns/stardust.png'),
-                    linear-gradient(180deg, #2D1B4E 0%, #1A0B2E 100%);
-        color: #E0D5FF;
+        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                    linear-gradient(135deg, #2d1b4e 0%, #1a0b2e 100%);
+        color: #f0e6ff;
     }
     .nebula-card {
-        background: rgba(45, 27, 78, 0.6);
-        border: 2px solid #BB86FC;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid #bb86fc;
         border-radius: 20px;
         padding: 20px;
         margin-bottom: 20px;
         text-align: center;
-        box-shadow: 0 0 15px rgba(187, 134, 252, 0.2);
     }
-    .stButton>button {
-        background: linear-gradient(45deg, #6200EE, #BB86FC);
+    .stTextArea textarea {
+        background-color: rgba(255,255,255,0.1);
         color: white;
-        border-radius: 30px;
-        height: 55px;
-        font-weight: bold;
-        border: none;
+        border-radius: 10px;
     }
-    .signal-btn {
-        background-color: #25D366;
-        color: white;
-        padding: 18px;
-        border-radius: 30px;
-        text-align: center;
-        font-weight: bold;
-        text-decoration: none;
-        display: block;
-        margin-top: 10px;
-    }
-    h1, h2, h3 { color: #F0E6FF !important; }
     </style>
     """, unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align: center;'>🦉 NIGHT OWL</h1>", unsafe_allow_html=True)
 
-# 1. SCRIPTURE CARD
-st.markdown("""
-<div class="nebula-card">
-    <p style="font-size: 19px; font-style: italic; line-height: 1.5;">
-        "For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future."
-    </p>
-    <p style="color: #BB86FC; font-weight: bold;">— Jeremiah 29:11</p>
-</div>
-""", unsafe_allow_html=True)
+# --- 2. THE SCRIPTURE ---
+st.markdown('<div class="nebula-card"><i>"For I know the plans I have for you..."</i><br><b>Jeremiah 29:11</b></div>', unsafe_allow_html=True)
 
-# 2. MOOD ENGINE
-mood = st.select_slider("How is the Nightingale today?", ["Exhausted", "Tired", "Steady", "Energetic", "Flirty"])
-st.markdown('<div style="text-align:center; font-size:90px; padding:10px;">', unsafe_allow_html=True)
+# --- 3. THE ANIMATED OWL MOOD ENGINE ---
+mood = st.select_slider("How are you feeling?", ["Exhausted", "Tired", "Steady", "Energetic", "Flirty"])
+
 if mood == "Flirty":
-    st.write("✨🦉✨")
-    st.subheader("Open-Winged Owl")
-    st.caption("Mission Status: Peak Launch Active!")
-elif mood in ["Exhausted", "Tired"]:
-    st.write("😴🦉💤")
-    st.subheader("Sleepy Owl")
-    st.caption("Quiet night. Recharging the soul.")
+    st.image("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMGpxx6rD8tE40/giphy.gif")
+    st.subheader("✨ Open-Winged Owl")
 else:
-    st.write("👀🦉👀")
-    st.subheader("Steady Owl")
-    st.caption("Clear skies and steady wings.")
-st.markdown('</div>', unsafe_allow_html=True)
+    st.image("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndzZ4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l41lTfuxV5R8Bv1iU/giphy.gif")
+    st.subheader("🌙 Sleepy Owl")
 
-# 3. MISSION TRACKING (Mockup Style)
+# --- 4. FLEXIBLE TRACKING (The Medication Box) ---
 st.markdown('<div class="nebula-card">', unsafe_allow_html=True)
-st.subheader("📝 Mission Logbook")
-c1, c2 = st.columns(2)
-with c1:
-    st.checkbox("💊 NMN Taken")
-    st.checkbox("📊 Clearblue Peak")
-with c2:
-    st.checkbox("💧 Hydrated")
-    st.checkbox("🌿 Supplements")
+st.subheader("📝 Mission Log")
+
+# This is where you can type your meds
+meds = st.text_area("Medications & Notes", placeholder="e.g. NMN, Metformin, Vitamins...")
+
+clearblue = st.selectbox("📊 Clearblue Result", ["Not Taken", "Low", "High", "Peak"])
 
 if st.button("SAVE TO THE STARS"):
     st.balloons()
-    st.success("Entry captured in the nebula!")
+    st.success("Mission Log Captured!")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# 4. THE SIGNAL
+# --- 5. THE SIGNAL ---
 st.subheader("📲 The Signal")
 msg = urllib.parse.quote("Hey Jaco, Nightingale needs a hand. 🦉")
-st.markdown(f'<a href="https://wa.me/27845870789?text={msg}" class="signal-btn">SIGNAL JACO (WhatsApp)</a>', unsafe_allow_html=True)
+st.markdown(f'<a href="https://wa.me/27845870789?text={msg}" target="_blank"><button style="width:100%; height:55px; background:#25D366; color:white; border-radius:15px; border:none; font-weight:bold; font-size:18px;">SIGNAL JACO (WhatsApp)</button></a>', unsafe_allow_html=True)
