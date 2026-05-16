@@ -18,7 +18,7 @@ st.set_page_config(
 
 # --- THEME & STYLING (GALAXY THEME) ---
 
-st.markdown(\"\"\"
+st.markdown("""
 
     <style>
 
@@ -102,89 +102,89 @@ st.markdown(\"\"\"
 
     </style>
 
-    \"\"\", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 # --- HEADER ---
 
-st.markdown(\"<h1 style='text-align: center; color: #bb86fc; text-shadow: 0 0 10px #bb86fc;'>🦉 NIGHT OWL # \", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #bb86fc; text-shadow: 0 0 10px #bb86fc;'>🦉 NIGHT OWL # ", unsafe_allow_html=True)
 
 # --- MAIN INTERFACE CARD ---
 
 with st.container():
 
-    st.markdown('<div class=\"nebula-card\">', unsafe_allow_html=True)
+    st.markdown('<div class="nebula-card">', unsafe_allow_html=True)
 
     
 
     # Scripture Header
 
-    st.markdown(\"\"\"
+    st.markdown("""
 
-        <i style='font-size: 1.2em;'>\"For I know the plans I have for you...\"_
+        <i style='font-size: 1.2em;'>"For I know the plans I have for you..."_
 
         <b style='color: #bb86fc;'>Jeremiah 29:11**
 
         <hr style='border: 0.5px solid rgba(187, 134, 252, 0.2); margin: 20px 0;'>
 
-    \"\"\", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
     
 
     # Mission Log Subheader
 
-    st.subheader(\"📝 Mission Log\")
+    st.subheader("📝 Mission Log")
 
     # --- ANIMATED OWL & ENERGY SLIDER ---
 
-    mood = st.select_slider(\"Energy Level\", options=[\"Exhausted\", \"Tired\", \"Steady\", \"Energetic\", \"Flirty\"])
+    mood = st.select_slider("Energy Level", options=["Exhausted", "Tired", "Steady", "Energetic", "Flirty"])
 
-    if mood == \"Flirty\":
+    if mood == "Flirty":
 
-        # ANIMATED OWL: Open wings, moving, high expression
+        # ANIMATED OWL: Open wings
 
-        st.image(\"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMGpxx6rD8tE40/giphy.gif\")
+        st.image("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6Z3B6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMGpxx6rD8tE40/giphy.gif")
 
-        st.markdown(\"<h3 style='color: #bb86fc;'>✨ Open-Winged Owl\", unsafe_allow_html=True)
+        st.markdown("<h3 style='color: #bb86fc;'>✨ Open-Winged Owl", unsafe_allow_html=True)
 
-    elif mood == \"Exhausted\":
+    elif mood == "Exhausted":
 
-        # ANIMATED OWL: Closed wings, sleepy expression
+        # ANIMATED OWL: Sleepy
 
-        st.image(\"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndzZ4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l41lTfuxV5R8Bv1iU/giphy.gif\")
+        st.image("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndzZ4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeWV4eXJyeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l41lTfuxV5R8Bv1iU/giphy.gif")
 
-        st.markdown(\"🌙 Sleepy Owl\", unsafe_allow_html=True)
+        st.markdown("🌙 Sleepy Owl", unsafe_allow_html=True)
 
     else:
 
         # Standard Animated Owl
 
-        st.image(\"[suspicious link removed]\")
+        st.image("[suspicious link removed]")
 
-        st.subheader(\"🦉 Observant Owl\")
+        st.subheader("🦉 Observant Owl")
 
     # --- 3D-STYLED INPUT FIELDS ---
 
-    med_notes = st.text_area(\"Medications & Daily Notes\", placeholder=\"Record NMN, supplements, etc...\")
+    med_notes = st.text_area("Medications & Daily Notes", placeholder="Record NMN, supplements, etc...")
 
-    clearblue = st.selectbox(\"📊 Clearblue Result\", [\"Not Taken\", \"Low\", \"High\", \"Peak\"])
+    clearblue = st.selectbox("📊 Clearblue Result", ["Not Taken", "Low", "High", "Peak"])
 
-    # VISIBLE ACTION BUTTON
+    # SAVE BUTTON
 
-    if st.button(\"💾 SAVE TO THE STARS\"):
+    if st.button("💾 SAVE TO THE STARS"):
 
         st.balloons()
 
-        st.success(\"Mission Log saved to the galaxy!\")
+        st.success("Mission Log saved to the galaxy!")
 
     st.markdown('', unsafe_allow_html=True)
 
-# --- EMERGENCY SIGNAL (Visible WhatsApp Button) ---
+# --- EMERGENCY SIGNAL (WhatsApp Button) ---
 
-msg = urllib.parse.quote(\"Hey Jaco, Nightingale needs a hand. 🦉\")
+msg = urllib.parse.quote("Hey Jaco, Nightingale needs a hand. 🦉")
 
-whatsapp_url = f\"https://wa.me/27845870789?text={msg}\"
+whatsapp_url = f"https://wa.me/27845870789?text={msg}"
 
-st.markdown(f\"\"\"
+st.markdown(f"""
 
     <a href='{whatsapp_url}' target='_blank' style='text-decoration: none;'>
 
@@ -218,6 +218,6 @@ st.markdown(f\"\"\"
 
     
 
-\"\"\", unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 ```
