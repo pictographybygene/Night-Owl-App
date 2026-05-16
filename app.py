@@ -4,25 +4,25 @@ import urllib.parse
 
 # 1. SETUP
 
-st.set_page_config(page_title='Night Owl v4', page_icon='🦉')
+st.set_page_config(page_title='Night Owl v5', page_icon='🦉')
 
-# 2. THE VISUAL STYLING ENGINE (Completely single-line quoted to force stability)
+# 2. INJECTED STYLE ENGINE (Single quotes only to prevent runtime parsing errors)
 
 st.markdown('<style>.stApp { background: #090912; color: #f0e6ff; } .nebula-card { background: rgba(255, 255, 255, 0.05); border: 2px solid #bb86fc; border-radius: 20px; padding: 20px; margin-bottom: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.5); } .stButton>button { width: 100%; border-radius: 15px; height: 3.5em; background: linear-gradient(135deg, #bb86fc, #9965f4); color: black !important; font-weight: bold; }</style>', unsafe_allow_html=True)
 
 # 3. HEADER & BANNER CARDS
 
-st.markdown('<div class="nebula-card"><h1 style="color: #bb86fc; margin: 0;">🦉 NIGHT OWL v4 # ', unsafe_allow_html=True)
+st.markdown('<div class="nebula-card"><h1 style="color: #bb86fc; margin: 0;">🦉 NIGHT OWL v5 # ', unsafe_allow_html=True)
 
 st.markdown('<div class="nebula-card"><p style="font-size: 1.1em; font-style: italic; margin-bottom: 5px;">"For I know the plans I have for you..."**Jeremiah 29:11**', unsafe_allow_html=True)
 
-# 4. SLIDER FOR ENERGY Milestones
+# 4. SLIDER FOR ENERGY
 
 st.write('### ⚡ Energy Level')
 
 mood = st.select_slider('Status Meter', options=['Exhausted', 'Tired', 'Steady', 'Energetic', 'Flirty'], label_visibility='collapsed')
 
-# 5. ASSET HANDLERS
+# 5. OWL IMAGES
 
 if mood == 'Flirty':
 
@@ -42,7 +42,7 @@ else:
 
     st.markdown('<h3 style="text-align: center; color: #bb86fc;">🦉 Observant Owl', unsafe_allow_html=True)
 
-# 6. REGISTRATION CONTAINER
+# 6. MISSION LOG CONTAINER
 
 st.markdown('<div class="nebula-card">', unsafe_allow_html=True)
 
@@ -60,7 +60,7 @@ if st.button('💾 SAVE DATA'):
 
 st.markdown('', unsafe_allow_html=True)
 
-# 7. COMMUNICATIONS LINK
+# 7. WHATSAPP LINK
 
 msg = urllib.parse.quote('Hey Jaco, Nightingale needs a hand. 🦉')
 
